@@ -1,17 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<link rel="stylesheet" href="index.css" />
+  <meta charset="UTF-8">
+  <title>KevOS Desktop</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<div class="topnav">
-		<div class="seach-container">
-			<form action="/action_page.php">
-				<input type="text" placeholder="Search here:" name="search">
-				<button type="submit"><i class="fa fa-search"></i>
-				</button>
-			</form>
-		</div>
-	</div>
+  <div class="desktop">
+    <div class="icon" onclick="openWindow('notepad')">📝<br>Notepad</div>
+    <div class="icon" onclick="openWindow('files')">📁<br>Files</div>
+  </div>
+
+  <!-- Notepad Window -->
+  <div class="window" id="notepad">
+    <div class="window-header" onmousedown="dragStart(event, 'notepad')">
+      Notepad
+      <div class="window-controls">
+        <button onclick="minimizeWindow('notepad')">🗕</button>
+        <button onclick="closeWindow('notepad')">✖</button>
+      </div>
+    </div>
+    <div class="window-body">
+      <textarea placeholder="Type something..."></textarea>
+    </div>
+  </div>
+
+  <!-- Files Window -->
+  <div class="window" id="files">
+    <div class="window-header" onmousedown="dragStart(event, 'files')">
+      Files
+      <div class="window-controls">
+        <button onclick="minimizeWindow('files')">🗕</button>
+        <button onclick="closeWindow('files')">✖</button>
+      </div>
+    </div>
+    <div class="window-body">
+      <ul>
+        <li>📄 document.txt</li>
+        <li>🖼️ image.png</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="taskbar">KevOS</div>
+
+  <script src="script.js"></script>
 </body>
 </html>
