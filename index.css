@@ -1,9 +1,3 @@
-<style>
-* {boxing-sizing: bordeer-box;}
-body {
-	margin: 0;
-	font-family: Arial, Helvetica, sans-serif;
-}
 /* adding black background color to the top nav bar */
 .topnav {
 	overflow hidden;
@@ -55,4 +49,3 @@ body {
 		border: 1px solid #ccc;
 	}
 }
-</style>
