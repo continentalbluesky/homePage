@@ -1,7 +1,7 @@
 function openWindow(id) {
   const win = document.getElementById(id);
   win.style.display = "block";
-  win.style.zIndex = Date.now(); // bring to front
+  win.style.zIndex = Date.now();
 }
 
 function closeWindow(id) {
@@ -12,7 +12,6 @@ function minimizeWindow(id) {
   document.getElementById(id).style.display = "none";
 }
 
-// Dragging logic
 let offsetX = 0, offsetY = 0, isDragging = false, dragTarget = null;
 
 function dragStart(e, id) {
