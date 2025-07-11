@@ -1,37 +1,17 @@
-function openWindow(id) {
-  const win = document.getElementById(id);
-  win.style.display = "block";
-  win.style.zIndex = Date.now();
-}
+const searchBar = document.getElementById('searchBar');
+const posts = document.querySelectorAll('.post');
 
-function closeWindow(id) {
-  document.getElementById(id).style.display = "none";
-}
+searchBar.addEventListener('input', function () {
+  const searchText = this.value.toLowerCase();
 
-function minimizeWindow(id) {
-  document.getElementById(id).style.display = "none";
-}
+  posts.forEach(post => {
+    const title = post.querySelector('.title').textContent.toLowerCase();
+    const content = post.textContent.toLowerCase();
 
-let offsetX = 0, offsetY = 0, isDragging = false, dragTarget = null;
-
-function dragStart(e, id) {
-  dragTarget = document.getElementById(id);
-  offsetX = e.clientX - dragTarget.offsetLeft;
-  offsetY = e.clientY - dragTarget.offsetTop;
-  isDragging = true;
-
-  document.onmousemove = dragMove;
-  document.onmouseup = dragEnd;
-}
-
-function dragMove(e) {
-  if (!isDragging) return;
-  dragTarget.style.left = (e.clientX - offsetX) + 'px';
-  dragTarget.style.top = (e.clientY - offsetY) + 'px';
-}
-
-function dragEnd() {
-  isDragging = false;
-  document.onmousemove = null;
-  document.onmouseup = null;
-}
+    if (title.includes(searchText) || content.includes(searchText)) {
+      post.style.display = '';
+    } else {
+      post.style.display = 'none';
+    }
+  });
+});
