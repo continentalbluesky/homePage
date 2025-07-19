@@ -1,29 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>test</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <canvas id="matrix"></canvas>
-  <header>
-    <h1 class="glitch" data-text="Kin">test</h1>
-    <div class="search-container">
-      <span class="cursor">█</span>
-      <input type="text" id="searchBar" placeholder="search posts...">
-    </div>
-  </header>
-  <main>
-    <article class="post">
-      <h2 class="title">7/18/2025 8:32am:</h2>
-      <p>test</p>
-    </article>
-  </main>
-  <footer>
-    <p>&copy; 2025 Logorhythm X</p>
-  </footer>
-  <script src="script.js"></script>
-</body>
-</html>
+<!-- Chat Room Section -->
+<div id="chat-container" style="margin-top:40px;">
+  <h2>Chat Room</h2>
+  <div id="chat-box" style="height:200px; border:1px solid #ccc; overflow-y:scroll; padding:10px; background:#111; color:#0f0;"></div>
+  <input type="text" id="chat-input" placeholder="Type your message..." style="width:80%; padding:5px;">
+  <button onclick="sendMessage()">Send</button>
+</div>
+
+<script src="https://cdn.socket.io/4.3.2/socket.io.min.js"></script>
+<script>
+  const socket = io('http://localhost:3000');
+  const chatBox = document.getElementById('chat-box');
+  const chatInput = document.getElementById('chat-input');
+
+  socket.on('chat message', (msg) => {
+    const msgDiv = document.createElement('div');
+    msgDiv.textContent = msg;
+    chatBox.appendChild(msgDiv);
+    chatBox.scrollTop = chatBox.scrollHeight;
+  });
+
+  function sendMessage() {
+    const msg = chatInput.value;
+    if (msg.trim() !== '') {
+      socket.emit('chat message', msg);
+      chatInput.value = '';
+    }
+  }
+</script>
